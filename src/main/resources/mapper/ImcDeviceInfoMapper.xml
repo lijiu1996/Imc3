@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.ImcDeviceInfoMapper">
+    <resultMap id="DeviceResultMap" type="com.example.demo.entity.Device">
+        <result column="id" jdbcType="INTEGER" property="id"/>
+        <result column="label" jdbcType="VARCHAR" property="label"/>
+        <result column="ip" jdbcType="VARCHAR" property="ip"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="runtime" jdbcType="VARCHAR" property="runTime"/>
+        <result column="sys_description" jdbcType="VARCHAR" property="sysDescription"/>
+        <result column="dev_ping_state" jdbcType="INTEGER" property="devPingState"/>
+        <result column="category_id" jdbcType="INTEGER" property="categoryId"/>
+        <result column="symbol_id" jdbcType="INTEGER" property="symbolId"/>
+        <result column="symbol_name" jdbcType="VARCHAR" property="symbolName"/>
+        <result column="type_name" jdbcType="VARCHAR" property="typeName"/>
+    </resultMap>
+
+    <resultMap id="InterfaceResultMap" type="com.example.demo.entity.Interfaces">
+        <result column="device_id" jdbcType="INTEGER" property="deviceId"/>
+        <result column="net_station_id" jdbcType="INTEGER" property="stationId"/>
+        <result column="net_device_id" jdbcType="INTEGER" property="netDeviceId"/>
+        <result column="if_index" jdbcType="INTEGER" property="ifIndex"/>
+        <result column="if_type" jdbcType="INTEGER" property="ifType"/>
+        <result column="if_type_desc" jdbcType="VARCHAR" property="ifTypeDesc"/>
+        <result column="if_description" jdbcType="VARCHAR" property="ifDescription"/>
+        <result column="admin_status" jdbcType="INTEGER" property="adminStatus"/>
+        <result column="admin_status_desc" jdbcType="VARCHAR" property="adminStatusDesc"/>
+        <result column="operation_status" jdbcType="INTEGER" property="operationStatus"/>
+        <result column="operation_status_desc" jdbcType="VARCHAR" property="operationStatusDesc"/>
+        <result column="show_status" jdbcType="INTEGER" property="showStatus"/>
+        <result column="status_desc" jdbcType="VARCHAR" property="statusDesc"/>
+        <result column="if_speed" jdbcType="INTEGER" property="ifSpeed"/>
+        <result column="appointed_speed" jdbcType="INTEGER" property="appointedSpeed"/>
+        <result column="if_alias" jdbcType="VARCHAR" property="ifAlias"/>
+        <result column="phy_address" jdbcType="VARCHAR" property="phyAddress"/>
+        <result column="mtu" jdbcType="INTEGER" property="mtu"/>
+        <result column="ip" jdbcType="VARCHAR" property="ip"/>
+        <result column="mask" jdbcType="VARCHAR" property="mask"/>
+    </resultMap>
+
+    <resultMap id="DeviceCategoryResultMap" type="com.example.demo.entity.DeviceCategory">
+        <result column="id" jdbcType="INTEGER" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+    </resultMap>
+
+    <select id="getDevice" resultMap="DeviceResultMap">
+        select * from t_imc_device_info where id = #{device_id}
+    </select>
+
+    <select id="getDeviceList" resultMap="DeviceResultMap">
+        select * from t_imc_device_info
+    </select>
+    
+    <select id="getInterfaceList" resultMap="InterfaceResultMap">
+        select * from t_imc_interface_info where device_id = #{deviceId}
+    </select>
+    
+    <select id="getDeviceCategory" resultMap="DeviceCategoryResultMap">
+        select * from t_imc_category
+    </select>
+
+</mapper>
